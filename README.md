@@ -23,3 +23,10 @@ int main() {
    return 0;
 }
 ```
+
+# LAB 01
+Every project we create in lab, we create using platformIO and new project **BE AWARE OF FILES WHERE YOU SAVE**
+Everytime change /src/main.cpp to main.c
+
+`ctrl+alt+B` to build/compile code into arduino code
+`ctrl+alt+U` to upload code to board
