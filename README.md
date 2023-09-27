@@ -15,7 +15,7 @@
 | Content Cell  | Content Cell  |
 | Content Cell  | Content Cell  |
 
-bash```
+```
 #include <stdio.h>
 int main() {
    // printf() displays the string inside quotation
