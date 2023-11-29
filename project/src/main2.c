@@ -28,8 +28,7 @@ int main(void)
     TIM0_OVF_1MS
     TIM0_OVF_ENABLE
     
-
-    TIM1_OVF_2S
+    TIM1_OVF_1SEC
     TIM1_OVF_ENABLE
 
     sei();
