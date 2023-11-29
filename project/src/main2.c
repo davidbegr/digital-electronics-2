@@ -24,10 +24,13 @@ int main(void)
     // uart_init(UART_BAUD_SELECT(115200, F_CPU));
     oled_init(OLED_DISP_ON);
     oled_clrscr();
+    
+    TIM0_OVF_1MS
+    TIM0_OVF_ENABLE
+    
 
-    // Corrected Timer configuration
-    TIM1_overflow_262ms();
-    TIM1_overflow_interrupt_enable();
+    TIM1_OVF_2S
+    TIM1_OVF_ENABLE
 
     sei();
 
