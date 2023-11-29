@@ -10,12 +10,20 @@
 #include <uart.h>           // Peter Fleury's UART library
 #include <stdlib.h>         // C library. Needed for number conversions
 #include <adc.h>
+#include <oled.h>
 
 /* Function definitions ----------------------------------------------*/
 int main(void)
 {
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
     ADC_init();
+    // TWI
+    twi_init();
+
+    // UART
+    // uart_init(UART_BAUD_SELECT(115200, F_CPU));
+    oled_init(OLED_DISP_ON);
+    oled_clrscr();
 
     // Corrected Timer configuration
     TIM1_overflow_262ms();
@@ -39,6 +47,23 @@ ISR(TIMER1_OVF_vect)
     uint16_t value = ADC_read(0);
 }
 
+ISR(TIMER0_OVF_vect)
+{
+    uint16_t value, x;
+    char string[8];  // Increase the size to hold three digits and the null terminator
+
+    // Read converted value
+    value = ADC_read();
+
+    // Convert "value" to "string" and display it
+    x = (value * 100 / 1023);
+    x = 100 - x;
+    itoa(x, string, 10);
+    oled_gotoxy(2, 2);
+    oled_puts(string);
+    oled_puts(".");
+}
+
 ISR(ADC_vect)
 {
     uint16_t value, x;
@@ -53,4 +78,8 @@ ISR(ADC_vect)
     itoa(x, string, 10);
     uart_puts(string);
     uart_puts(" ");
+    oled_gotoxy(2, 2);
+    oled_puts(string);
+    oled_puts(".");
+
 }
